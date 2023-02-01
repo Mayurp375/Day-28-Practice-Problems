@@ -1,5 +1,7 @@
 package org.example.Day28PracticeProblems.adressBook;
 
+import java.util.Comparator;
+
 public class Contact implements Comparable<Contact> {
     String name, lastName, address, city, state, phone, email;
     int zip;
@@ -113,5 +115,13 @@ public class Contact implements Comparable<Contact> {
         if (!(o instanceof Contact)) return false;
         Contact that = (Contact) o;
         return zip == that.zip && name.equals(that.name) && lastName.equals(that.lastName) && address.equals(that.address) && city.equals(that.city) && state.equals(that.state) && phone.equals(that.phone) && email.equals(that.email);
+    }
+}
+
+class SortByName implements Comparator<Contact>{
+
+    @Override
+    public int compare(Contact o1, Contact o2) {
+        return o1.getName().compareTo(o2.getName());
     }
 }

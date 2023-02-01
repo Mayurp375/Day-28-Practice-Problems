@@ -3,10 +3,8 @@ package org.example.Day28PracticeProblems.adressBook;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ContactMain {
     static List<Contact> bookList;
@@ -21,7 +19,8 @@ public class ContactMain {
         int ch;
         while (true) {
             System.out.println("enter value 0- Exit,1.add contact,3 - delete contact " +
-                    "4 Find by cityName or stateName "+"5 find number by name");
+                    "4 Find by cityName or stateName "+"5 find number by name" +
+                    "+ 6 find dy sorted manner by there name");
             ch = sc.nextInt();
             if (ch == 0) {
                 break;
@@ -48,10 +47,17 @@ public class ContactMain {
                 System.out.println("getting number of contact by name ");
                 String name = sc.nextLine();
                 searchContactNumber(name,path);
+            }else if(ch == 6){
+                System.out.println("sorted my name ");
+                sortedByName(path);
             }
         }
     }
-
+    private static void sortedByName(String path){
+        //using stream API
+        List<Contact> collect = bookList.stream().sorted(Comparator.comparing(Contact::getName)).collect(Collectors.toList());
+        System.out.println(collect);
+    }
     private static void searchContactNumber(String name, String path) {
         for (int i = 0; i < bookList.size(); i++) {
             if (bookList.get(i).getName().equals(name)) {
