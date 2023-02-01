@@ -21,7 +21,7 @@ public class ContactMain {
         int ch;
         while (true) {
             System.out.println("enter value 0- Exit,1.add contact,3 - delete contact " +
-                    "4 Find by cityName or stateName ");
+                    "4 Find by cityName or stateName "+"5 find number by name");
             ch = sc.nextInt();
             if (ch == 0) {
                 break;
@@ -44,6 +44,20 @@ public class ContactMain {
                 System.out.println("enter cityName or stateName to search");
                 String name = sc.nextLine();
                 search(name,path);
+            }else if(ch == 5){
+                System.out.println("getting number of contact by name ");
+                String name = sc.nextLine();
+                searchContactNumber(name,path);
+            }
+        }
+    }
+
+    private static void searchContactNumber(String name, String path) {
+        for (int i = 0; i < bookList.size(); i++) {
+            if (bookList.get(i).getName().equals(name)) {
+                System.out.println("found .......");
+                Comparable<String> phone = bookList.get(i).getPhone();
+                System.out.println(phone);
             }
         }
     }
