@@ -1,6 +1,10 @@
 package org.example.Day28PracticeProblems.adressBook;
 
+import com.opencsv.CSVReader;
+import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -9,11 +13,11 @@ import java.util.stream.Collectors;
 public class ContactMain {
     static List<Contact> bookList;
     static Scanner sc = new Scanner(System.in);
-    static FileWriter fileWriter;
+
 
     public static void main(String[] args) throws IOException {
 
-        String path = "D:\\java program\\Java by intelliJ\\demo\\src\\main\\java\\org\\example\\Day28PracticeProblems\\adressBook\\Contact.txt";
+        String path = "D:\\java program\\Java by intelliJ\\demo\\src\\main\\java\\org\\example\\Day28PracticeProblems\\adressBook\\Contact.csv";
         ContactMain.fileAgenda(path);
 
         int ch;
@@ -183,5 +187,29 @@ public class ContactMain {
         fileWriter.write(String.valueOf(bookList));
         fileWriter.close();
         System.out.println("File writen successfully....");
+    }
+    private static  void fileRead(String path){
+        try {
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            FileReader filereader = new FileReader(path);
+
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null) {
+                for (String cell : nextRecord) {
+                    System.out.print(cell + "\t");
+                }
+                System.out.println();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
