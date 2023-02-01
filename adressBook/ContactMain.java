@@ -57,6 +57,18 @@ public class ContactMain {
         //using stream API
         List<Contact> collect = bookList.stream().sorted(Comparator.comparing(Contact::getName)).collect(Collectors.toList());
         System.out.println(collect);
+    } private static void sortedByCity(String path){
+        //using stream API
+        List<Contact> collect = bookList.stream().sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList());
+        System.out.println(collect);
+    } private static void sortedByState(String path){
+        //using stream API
+        List<Contact> collect = bookList.stream().sorted(Comparator.comparing(Contact::getState)).collect(Collectors.toList());
+        System.out.println(collect);
+    } private static void sortedByZip(String path){
+        //using stream API
+        List<Contact> collect = bookList.stream().sorted(Comparator.comparing(Contact::getZip)).collect(Collectors.toList());
+        System.out.println(collect);
     }
     private static void searchContactNumber(String name, String path) {
         for (int i = 0; i < bookList.size(); i++) {
